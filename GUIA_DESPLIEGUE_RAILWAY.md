@@ -51,8 +51,10 @@ Esta guía te ayudará a desplegar ambos proyectos Django (`gestion_clinica` y `
 
 1. Click en el servicio recién creado
 2. Ve a la pestaña **"Settings"**
-3. En **"Root Directory"**, escribe: `gestion_clinica`
-4. En **"Start Command"**, deja vacío (Railway usará el `Procfile`)
+3. **IMPORTANTE**: En **"Root Directory"**, escribe: `gestion_clinica`
+   - Esto le dice a Railway dónde está el `manage.py` y el `Procfile` de este servicio
+   - Si no configuras esto, Railway buscará el `Procfile` en la raíz y puede dar error
+4. En **"Start Command"**, deja vacío (Railway usará el `Procfile` dentro de `gestion_clinica`)
 5. En **"Build Command"**, deja vacío
 
 ### 3.3. Conectar la base de datos
@@ -121,8 +123,10 @@ SITE_URL=https://gestion-clinica-tu-proyecto.railway.app
 
 1. Click en el servicio recién creado
 2. Ve a la pestaña **"Settings"**
-3. En **"Root Directory"**, escribe: `cliente_web`
-4. En **"Start Command"**, deja vacío
+3. **IMPORTANTE**: En **"Root Directory"**, escribe: `cliente_web`
+   - Esto le dice a Railway dónde está el `manage.py` y el `Procfile` de este servicio
+   - Si no configuras esto, Railway buscará el `Procfile` en la raíz y puede dar error
+4. En **"Start Command"**, deja vacío (Railway usará el `Procfile` dentro de `cliente_web`)
 5. En **"Build Command"**, deja vacío
 
 ### 4.3. Conectar la misma base de datos
@@ -278,6 +282,13 @@ Si quieres usar dominios personalizados:
 ---
 
 ## ⚠️ Problemas Comunes y Soluciones
+
+### Error: "No start command was found"
+**Solución**: 
+- Verifica que hayas configurado el **"Root Directory"** en Settings del servicio
+- Para `gestion_clinica`: Root Directory debe ser `gestion_clinica`
+- Para `cliente_web`: Root Directory debe ser `cliente_web`
+- Si no configuras el Root Directory, Railway buscará el `Procfile` en la raíz del proyecto
 
 ### Error: "No module named 'gunicorn'"
 **Solución**: Verifica que `requirements.txt` incluya `gunicorn==21.2.0`
